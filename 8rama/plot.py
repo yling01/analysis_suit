@@ -66,7 +66,7 @@ def add_NIP(Fig, x0, y0, SubPlotW, SubPlotH, NIP):
     text_w = SubPlotW
     text_h = SubPlotH / 2
     tax = Fig.add_axes([text_l, text_b, text_w, text_h])
-    tax.text(0, 0, "3D-NIP: total => %.2f | clean => %.2f" % (NIP_total, NIP_clean), fontsize = 20)
+    tax.text(0, 0, "3D-NIP: total > %.2f | clean > %.2f" % (int(NIP_total * 1000) / 3, int(NIP_clean * 1000) / 3, fontsize = 20)
     tax.axis("off")
 
 def MakeFigure(FigW, FigH, inp, out, numRes, WriteDescription, seq, degreeFile, NIP, population, RMSD):
