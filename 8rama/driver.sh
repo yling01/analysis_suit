@@ -11,8 +11,8 @@ function calcDihed () {
 
   out_dir1=s1_phipsi
   out_dir2=s2_phipsi
-  xtc1=../7*/s1*/cluster${ir}.xtc
-  xtc2=../7*/s2*/cluster${ir}.xtc
+  xtc1=../6*/s1*/cluster${ir}.xtc
+  xtc2=../6*/s2*/cluster${ir}.xtc
   ndx=../2*/PhiPsi.ndx
   [[ ! -e $out_dir1 ]] && mkdir -p $out_dir1
   [[ ! -e $out_dir2 ]] && mkdir -p $out_dir2
