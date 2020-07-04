@@ -1,6 +1,5 @@
 #!/bin/env bash
-module unload python/3.6.0
-module load python
+source ~/compute.sh
 echo "number of residues: "
 read numRes
 echo "sequence: "
@@ -43,13 +42,14 @@ for ((i=1; i<=5; i++))
       echo 'Calculating cluster' ${i} 's'${j}
       if [ ${i} == 1  ]; then
           python plot.py --input s${j}_phipsi/cluster$i.txt --output s${j}_cluster${i}.png \
-              --numRes ${numRes} --seq ${seq} --degreefile SESE.txt \
+              --numRes ${numRes} --seq ${seq} --degreeFile SESE.txt \
               --NIP ../5*/Result/s${j}/NIP.txt --RMSD ../8sample/s${j}cluster${i}/stat.txt \
               --population ../5*/Result/s${j}/cluster${i}.txt --WriteDescription True
       else
           python plot.py --input s${j}_phipsi/cluster$i.txt --output s${j}_cluster${i}.png \
-              --numRes ${numRes} --seq ${seq} --degreefile SESE.txt \
+              --numRes ${numRes} --seq ${seq} --degreeFile SESE.txt \
               --NIP ../5*/Result/s${j}/NIP.txt --RMSD ../8sample/s${j}cluster${i}/stat.txt \
               --population ../5*/Result/s${j}/cluster${i}.txt --WriteDescription False
+      fi
    done
 done
