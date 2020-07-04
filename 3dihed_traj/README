@@ -1,0 +1,3 @@
+there is no need to call any script in this directory.
+the dihedral trajectories are outputed here.
+the all.trr file includes the both s1 and s2 for future calculation. 

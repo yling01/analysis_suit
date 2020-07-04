@@ -1,0 +1,2 @@
+bash driver_GenDihedTraj.sh
+driver_GenDihedTraj.sh generates the directory using phi/psi angles of the protein and concatenate them.

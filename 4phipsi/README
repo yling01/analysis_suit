@@ -1,0 +1,2 @@
+bash getPhiPsi.sh
+it analyzes eigenvectors calculated using all.trr 

@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH -p m4
+#SBATCH --qos=yushan
+#SBATCH --account=yushan
+#SBATCH -J JOBNAME
+#SBATCH -o runout.%j
+#SBATCH -e runerr.%j
+#SBATCH --export=ALL
+#SBATCH --time=07-00:00
+./rmsd.sh
