@@ -17,7 +17,7 @@ from MakeFigure import *
 from CalcNIP import *
 from Cluster import *
 from MakeDensityMtx import *
-
+import shutil
 def getInput(input):
     if input[0].upper() == "T":
         return True
@@ -61,7 +61,7 @@ if os.path.exists(dir_name):
                         + "(!!!Note: Files Might Be Overwritten!!!)\n")
         if int(signal) != 1:
             sys.exit("\nConflict of directory name!!!\nExiting...\n")
-    shutil. rmtree(dir_name)
+    shutil.rmtree(dir_name)
 
 os.makedirs(dir_name)
 
