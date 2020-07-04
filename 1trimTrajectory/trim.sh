@@ -14,12 +14,12 @@ outputS2="s2"
 for i in `seq $((seqLength*2)) $((seqLength*2+4))`;
 do
 	echo "Trimming s1/prod${i}"
-	gmx_mpi trjconv -f ${inputS1}/prod${i}*.xtc -s ${inputS1}/start${i}.tpr -o ${outputS1}/prod${i}.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENGTOCHANGE &> ${outputS1}/trjconv${i}.log << EOF
+	gmx_mpi trjconv -f ${inputS1}/prod${i}*.xtc -s ${inputS1}/start${i}.tpr -o ${outputS1}/prod${i}.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE &> ${outputS1}/trjconv${i}.log << EOF
 1
 EOF
 
 	echo "Trimming s2/prod${i}"
-   	gmx_mpi trjconv -f ${inputS2}/prod${i}*.xtc -s ${inputS2}/start${i}.tpr -o ${outputS2}/prod${i}.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENGTOCHANGE &> ${outputS2}/trjconv${i}.log << EOF
+   	gmx_mpi trjconv -f ${inputS2}/prod${i}*.xtc -s ${inputS2}/start${i}.tpr -o ${outputS2}/prod${i}.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE &> ${outputS2}/trjconv${i}.log << EOF
 1
 EOF
 done

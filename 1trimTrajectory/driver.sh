@@ -7,6 +7,14 @@ read seqLength
 echo "Sequence: "
 read seq
 
+echo "Enter the start time in ps: "
+read start
+
+echo "Enter end time in ps: "
+read end
+
+sed -i s.STARTTOCHANGE.${start} trim.sh
+sed -i s.ENDTOCHANGE.${end} trim.sh
 sed -i s.DIRTOCHANGE.${dir}.g trim.sh
 sed -i s.LENGTHTOCHANGE.${seqLength}.g trim.sh
 sed -i s.SEQUENCETOCHANGE.${seq}.g trim.sh
