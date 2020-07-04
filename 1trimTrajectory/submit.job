@@ -1,12 +1,9 @@
 #!/bin/bash
-#SBATCH -p m4
-#SBATCH --qos=yushan
-#SBATCH --account=yushan
+#SBATCH -p linlab
 #SBATCH -J dPCA
 #SBATCH -o runout.%j
 #SBATCH -e runerr.%j
 #SBATCH --export=ALL
-#SBATCH --mem=0
 #SBATCH --time=07-00:00
 source ~/compute.sh
 ./trim.sh
