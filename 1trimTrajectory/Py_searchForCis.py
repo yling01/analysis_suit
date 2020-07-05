@@ -1,7 +1,7 @@
 #Aidan Fike
 #June 28, 2019
 
-#Program to go through measured omega angle trajectories and find all cis peptide bonds 
+#Program to go through measured omega angle trajectories and find all cis peptide bonds
 
 import os
 
@@ -11,7 +11,7 @@ for line in currFile:
     words = line.split()
     if words[0] != "#" and words[0] != "@":
         for index, word in enumerate(words):
-            if index > 1 and abs(float(word)) < 90:
+            if index > 1 and abs(float(word)) < 150:
                 print("Cis bond found!")
                 cisFound = True
 if not cisFound:
