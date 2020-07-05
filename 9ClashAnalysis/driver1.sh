@@ -1,7 +1,5 @@
 #!/bin/bash
 echo "Make sure to change atoms in chimScript.py"
-echo "Top directory: "
-read dir
 echo "Sequence Length: "
 read seqLength
 for i in {1..2}
@@ -20,4 +18,4 @@ do
 		sbatch submit1.job
 		cd ../../
 	done
-done		
+done
