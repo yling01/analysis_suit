@@ -7,11 +7,10 @@
 #SBATCH -e runerr.%j
 #SBATCH --export=ALL
 #SBATCH --time=07-00:00
-echo 1 | gmx_mpi trjconv -s start0.tpr -f all.xtc -pbc mol -ur compact -o frame.pdb -b 50001 -e 50001
+source ~/m4.sh
+echo 1 | gmx_mpi trjconv -s start0.tpr -f all.xtc -pbc mol -ur compact -o frame.pdb -fr frame.ndx
 python Py_write_dummy_pdb.py
 echo 1 q | gmx_mpi make_ndx -f dummy.pdb -o index_cyclic.ndx #provide index_hotloop.ndx
 cat index_hotloop.ndx index_cyclic.ndx > index.ndx
-echo 1 | gmx_mpi trjconv -s start0.tpr -f all.xtc -pbc mol -ur compact -o all_pbc.xtc -b 50001 -e 100000 
 echo 0 1 | gmx_mpi trjconv -s dummy.pdb -f all_pbc.xtc -fit rot+trans -n index.ndx -o all.pdb
-mkdir Intermediates
 python driver.py all.pdb
