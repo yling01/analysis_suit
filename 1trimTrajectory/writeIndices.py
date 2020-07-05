@@ -1,3 +1,4 @@
+import numpy as np
 import optparse
 def getPhiPsiOmega(file, cyclic, gro):
     fi= open(file)
@@ -43,7 +44,7 @@ def getPhiPsiOmega(file, cyclic, gro):
         index_Phi.append(index["C"][i])
 
     index_Omega = []
-    for i in range(len(index["N"] - int(not(cyclic)))):
+    for i in range(len(index["N"]) - int(not(cyclic))):
         index_Omega.append(index["CA"][i])
         index_Omega.append(index["C"][i])
         index_Omega.append(index["N"][(i + 1) % len(index["N"])])
@@ -58,7 +59,7 @@ def getPhiPsiOmega(file, cyclic, gro):
 
 def write_Omega(Omega):
     with open("Omega.ndx", "w+") as fo:
-        fo.write("[ Omega ]")
+        fo.write("[ Omega ]\n")
         for i in range(len(Omega)):
             fo.write(" ".join(Omega[i]))
             fo.write("\n")
@@ -88,7 +89,7 @@ if __name__ == "__main__":
                       default = '')
     parser.add_option('--pdb', dest = 'pdb',
                       default = '')
-    parser.add_option('--cyclic', dest = 'pdb',
+    parser.add_option('--cyclic', dest = 'cyclic',
                       default = 'True')
     (options, args) = parser.parse_args()
     pdb = options.pdb
