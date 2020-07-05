@@ -1,12 +1,10 @@
-dir=DIRTOCHANGE
 seqLength=LENGTHTOCHANGE
 seq=SEQUENCETOCHANGE
 
 first=$((seqLength*2))
 
-echo "The input are from ${dir}/s*/bemeta/"
-inputS1=${dir}"/s1/bemeta"
-inputS2=${dir}"/s2/bemeta"
+inputS1="../../s1"
+inputS2="../../s2"
 
 outputS1="s1"
 outputS2="s2"
