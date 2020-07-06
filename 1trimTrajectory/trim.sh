@@ -18,7 +18,7 @@ do
 EOF
 
 	echo "Trimming s2/prod${i}"
-  gmx_mpi trjconv -f ${inputS2}/prod${i}*.xtc -s ${inputS2}/start${i}.tpr -o ${outputS2}/prod${i}.xtc -fr ${inputS2}/prod${i}.ndx -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE &> ${outputS2}/trjconv${i}.log << EOF
+    gmx_mpi trjconv -f ${inputS2}/prod${i}*.xtc -s ${inputS2}/start${i}.tpr -o ${outputS2}/prod${i}.xtc -fr ${inputS2}/prod${i}.ndx -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE &> ${outputS2}/trjconv${i}.log << EOF
 1
 EOF
 done
