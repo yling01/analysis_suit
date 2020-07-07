@@ -137,6 +137,7 @@ if __name__ == "__main__":
     ymax = 0.0
 
     probability = []
+    peak_x = []
     for index in range(len(seq)):
 
 
@@ -175,6 +176,19 @@ if __name__ == "__main__":
                                                                                                XTicksHotLoop,
                                                                                                probabilityCutoff)
 
+        HotLoopAll_max_x1 = HotLoopX[np.argmax(HotLoopAllY1)]
+        HotLoopAll_max_x2 = HotLoopX[np.argmax(HotLoopAllY2)]
+
+        axs_all[index][0].axvline(HotLoopAll_max_x1, ls="--")
+        axs_all[index][0].axvline(HotLoopAll_max_x2, ls="--")
+        HotLoopNoClash_max_x1 = HotLoopX[np.argmax(HotLoopNoClashY1)]
+        HotLoopNoClash_max_x2 = HotLoopX[np.argmax(HotLoopNoClashY2)]
+        axs_all[index][1].axvline(HotLoopNoClash_max_x1, ls="--")
+        axs_all[index][1].axvline(HotLoopNoClash_max_x2, ls="--")
+        all_peak_x = 0.5 * (HotLoopAll_max_x1 + HotLoopAll_max_x2)
+        noC_peak_x = 0.5 * (HotLoopNoClash_max_x1 + HotLoopNoClash_max_x2)
+        peak_x.append((all_peak_x, noC_peak_x))
+
         all_prob = 0.5 * (s1_all_prob + s2_all_prob)
         noC_prob = 0.5 * (s1_noC_prob + s2_noC_prob)
 
@@ -190,8 +204,8 @@ if __name__ == "__main__":
     ymax += 1.0
 
     for index in range(len(seq)):
-        properWrapper(axs_all[index][1], "No Clash Only", RMSDCutoff, ymax, index, 1, len(seq), "%s\nP(RMSD < %.1f | No Clash) = %.2f%%" % (seq[index], probabilityCutoff, probability[index][1]))
-        properWrapper(axs_all[index][0], "All Frames", RMSDCutoff, ymax, index, 0, len(seq), "%s\nP(RMSD < %.1f) = %.2f%%" % (seq[index], probabilityCutoff, probability[index][0]))
+        properWrapper(axs_all[index][1], "No Clash Only", RMSDCutoff, ymax, index, 1, len(seq), "%s\nP(RMSD < %.1f | No Clash) = %.2f%%\nHighest probability found at: %.3fÅ" % (seq[index], probabilityCutoff, probability[index][1], peak_x[index][1]))
+        properWrapper(axs_all[index][0], "All Frames", RMSDCutoff, ymax, index, 0, len(seq), "%s\nP(RMSD < %.1f) = %.2f%%\nHighest probability found at: %.3fÅ" % (seq[index], probabilityCutoff, probability[index][0], peak_x[index][0]))
 
     fig.savefig(filename="histogram.png", dpi=300)
 
