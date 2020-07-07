@@ -18,7 +18,7 @@ sed -i s.LENGTHTOCHANGE.${seqLength}.g trim.sh
 sed -i s.SEQUENCETOCHANGE.${seq}.g trim.sh
 
 echo "Getting backbone atoms ..."
-cp ../../s1/npt.gro curr.gro
+cp ../../s1/prod0*.gro curr.gro
 python writeIndices.py --Omega True --gro curr.gro
 
 sbatch submit.job
