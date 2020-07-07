@@ -207,6 +207,6 @@ if __name__ == "__main__":
         properWrapper(axs_all[index][1], "No Clash Only", RMSDCutoff, ymax, index, 1, len(seq), "%s\nP(RMSD < %.1f | No Clash) = %.2f%%\nHighest probability found at: %.3fÅ" % (seq[index], probabilityCutoff, probability[index][1], peak_x[index][1]))
         properWrapper(axs_all[index][0], "All Frames", RMSDCutoff, ymax, index, 0, len(seq), "%s\nP(RMSD < %.1f) = %.2f%%\nHighest probability found at: %.3fÅ" % (seq[index], probabilityCutoff, probability[index][0], peak_x[index][0]))
 
-    fig.savefig(filename="histogram.png", dpi=300)
+    fig.savefig(fname="histogram.png", dpi=300)
 
 
