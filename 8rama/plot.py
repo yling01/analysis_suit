@@ -234,5 +234,4 @@ if __name__ == '__main__':
         WriteDescription = True
     else:
         WriteDescription = False
-    print(NIP)
     MakeFigure((2 * (numRes + 2)), 4, INP, OUT, numRes, WriteDescription, seq, degreeFile, NIP, population, RMSD)
