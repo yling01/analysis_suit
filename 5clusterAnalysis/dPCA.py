@@ -139,7 +139,4 @@ if debug:
     s2_distance_mtx = calculate_distance_matrix(s2_density_clean)
     np.savetxt("s1_distance.dmtx", s1_distance_mtx, fmt="%5d%5d%10.5f%10.5f%10.5f")
     np.savetxt("s2_distance.dmtx", s2_distance_mtx, fmt="%10.5f")
-
-s1_density = s2_density = []
-s1_density_clean = s2_density_clean = []
-projection = []
+print("\nDone...")
