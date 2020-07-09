@@ -1,4 +1,5 @@
 #!/bin/sh
+source ~/compute.sh
 echo "Sequence Length: "
 read seqLength
 
