@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Make sure to change atoms in chimScript.py"
 echo "Sequence Length: "
-replace ="5"
+replace="5"
 read seqLength
 for (( i = 0; i < $seqLength+1; i++ )); do
    if [[ $i > 5 ]]; then
