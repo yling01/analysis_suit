@@ -16,7 +16,7 @@ do
 		mkdir -p s${i}/neutral${j}
 		cd s${i}/neutral${j}
         cp ../../../1trimTrajectory/s1/prod$(($((seqLength*2))+$((j-1)))).xtc all_pbc.xtc
-        cp ../../../../s1${i}/start0.tpr .
+        cp ../../../../s${i}/start0.tpr .
 		cp ../../submit1.job .
 		cp ../../*.py .
 		cp ../../*pdb .
