@@ -1,14 +1,6 @@
-module load python/3.6.0
-module load gcc/7.3.0
-module load cuda/10.2
-module load openmpi/2.1.2
-module load libmatheval
-export PATH
-source /cluster/tufts/ysl8/jovan/gromacs_linlab_avx512/bin/GMXRC.bash
-export PLUMED_KERNEL=/cluster/tufts/ysl8/jovan/gromacs_linlab_avx2/plumed/lib/libplumedKernel.so
-export GMXLIB=/cluster/tufts/ylin12/tim/localGMXLIB
-seqLength=8
-seq=SESEaaTG
+source ~/compute.sh
+seqLength=LENGTHTOCHANGE
+seq=SEQUENCETOCHANGE
 
 first=$((seqLength*2))
 
@@ -21,12 +13,12 @@ outputS2="s2"
 for i in `seq $((seqLength*2)) $((seqLength*2+4))`;
 do
 	echo "Trimming s1/prod${i}"
-	gmx_mpi trjconv -f ${inputS1}/prod${i}*.xtc -s ${inputS1}/start${i}.tpr -o ${outputS1}/prod${i}.xtc -pbc mol -ur compact -b 200000 -e 250000 &> ${outputS1}/trjconv${i}.log << EOF
+	gmx_mpi trjconv -f ${inputS1}/prod${i}*.xtc -s ${inputS1}/start${i}.tpr -o ${outputS1}/prod${i}.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE &> ${outputS1}/trjconv${i}.log << EOF
 1
 EOF
 
 	echo "Trimming s2/prod${i}"
-    gmx_mpi trjconv -f ${inputS2}/prod${i}*.xtc -s ${inputS2}/start${i}.tpr -o ${outputS2}/prod${i}.xtc -pbc mol -ur compact -b 200000 -e 250000 &> ${outputS2}/trjconv${i}.log << EOF
+    gmx_mpi trjconv -f ${inputS2}/prod${i}*.xtc -s ${inputS2}/start${i}.tpr -o ${outputS2}/prod${i}.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE &> ${outputS2}/trjconv${i}.log << EOF
 1
 EOF
 done
