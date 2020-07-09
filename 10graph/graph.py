@@ -112,7 +112,7 @@ if __name__ == "__main__":
     parser.add_option("--RMSDFile_s1", dest = "RMSDFile_s1", default = "")
     parser.add_option("--RMSDFile_s2", dest = "RMSDFile_s2", default = "")
     parser.add_option("--RMSDCutoff", dest = "RMSDCutoff", default = "2.0")
-    parser.add_option("--probabilityCutoff", dest = "probabilityCutoff", default = "2.0")
+    parser.add_option("--probabilityCutoff", dest = "probabilityCutoff", default = "0.5")
     parser.add_option("--seq", dest = "seq", default = "")
     (options, args) = parser.parse_args()
     clashFile_s1 = options.clashFile_s1.split(",")
@@ -204,9 +204,9 @@ if __name__ == "__main__":
     ymax += 1.0
 
     for index in range(len(seq)):
-        properWrapper(axs_all[index][1], "No Clash Only", RMSDCutoff, ymax, index, 1, len(seq), "%s\nP(RMSD < %.1f | No Clash) = %.2f%%\nHighest probability found at: %.3fÅ" % (seq[index], probabilityCutoff, probability[index][1], peak_x[index][1]))
-        properWrapper(axs_all[index][0], "All Frames", RMSDCutoff, ymax, index, 0, len(seq), "%s\nP(RMSD < %.1f) = %.2f%%\nHighest probability found at: %.3fÅ" % (seq[index], probabilityCutoff, probability[index][0], peak_x[index][0]))
+        properWrapper(axs_all[index][1], "No Clash Only", RMSDCutoff, ymax, index, 1, len(seq), "%s\nPr(RMSD < %.1fÅ | No Clash) = %.2f%%\nHighest Probability Found At %.3fÅ" % (seq[index], probabilityCutoff, probability[index][1], peak_x[index][1]))
+        properWrapper(axs_all[index][0], "All Frames", RMSDCutoff, ymax, index, 0, len(seq), "%s\nPr(RMSD < %.1fÅ) = %.2f%%\nHighest Probability Found At %.3fÅ" % (seq[index], probabilityCutoff, probability[index][0], peak_x[index][0]))
 
-    fig.savefig(fname="histogram.png", dpi=300)
+    fig.savefig(filename="histogram.png", dpi=300)
 
 
