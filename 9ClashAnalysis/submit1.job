@@ -8,7 +8,7 @@
 #SBATCH --export=ALL
 #SBATCH --time=07-00:00
 source ~/m4.sh
-echo 1 | gmx_mpi trjconv -s start0.tpr -f all.xtc -pbc mol -ur compact -o frame.pdb -fr frame.ndx
+echo 1 | gmx_mpi trjconv -s start0.tpr -f all_pdb.xtc -pbc mol -ur compact -o frame.pdb -fr frame.ndx
 python Py_write_dummy_pdb.py
 echo 1 q | gmx_mpi make_ndx -f dummy.pdb -o index_cyclic.ndx #provide index_hotloop.ndx
 cat index_hotloop.ndx index_cyclic.ndx > index.ndx
