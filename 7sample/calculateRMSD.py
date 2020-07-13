@@ -2,8 +2,10 @@ import MDAnalysis as mda
 import numpy as np
 import MDAnalysis.analysis.rms
 import optparse
+import os
 
 if __name__ == "__main__":
+    os.system("source ~/m4.sh")
     parser = optparse.OptionParser()
     parser.add_option("--ref", dest = "ref")
     parser.add_option("--trajectory", dest = "trajectory")
