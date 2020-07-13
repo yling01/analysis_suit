@@ -39,6 +39,8 @@ parser.add_option('--debug', dest = 'debug',
 parser.add_option('--seq', dest = 'seq',
                   default = 'Result',
                   help = 'Name of sequence')
+parser.add_option('--s1OmegaAngle', dest = "s1OmegaAngle",
+                  default = "../1trimTrajectory/s1/struct_omega.xvg")
 
 (options,args) = parser.parse_args()
 
@@ -47,6 +49,10 @@ interactive = getInput(options.interactive)
 debug = getInput(options.debug)
 dir_name = options.seq
 projectionFile = options.projection
+
+s1OmegaAngle = options.s1OmegaAngle
+
+trajectory_len = len(np.loadtxt(s1OmegaAngle, comments=["#", "@"]))
 
 if not os.path.exists(projectionFile):
     sys.exit("\nNo projection input!!!\nExiting\n")
