@@ -7,8 +7,8 @@ export PATH
 source /cluster/tufts/ysl8/jovan/gromacs_linlab_avx512/bin/GMXRC.bash
 export PLUMED_KERNEL=/cluster/tufts/ysl8/jovan/gromacs_linlab_avx2/plumed/lib/libplumedKernel.so
 export GMXLIB=/cluster/tufts/ylin12/tim/localGMXLIB
-seqLength=14
-seq=KKFLPFGGGGGGGG
+seqLength=LENGTHTOCHANGE
+seq=SEQUENCETOCHANGE
 
 first=$((seqLength*2))
 
@@ -21,12 +21,12 @@ outputS2="s2"
 for i in `seq $((seqLength*2)) $((seqLength*2+4))`;
 do
 	echo "Trimming s1/prod${i}"
-	gmx_mpi trjconv -f ${inputS1}/prod${i}*.xtc -s ${inputS1}/start${i}.tpr -o ${outputS1}/prod${i}.xtc -pbc mol -ur compact -b 50001 -e 100000 -fr ${inputS1}/prod${i}.ndx &> ${outputS1}/trjconv${i}.log << EOF
+	gmx_mpi trjconv -f ${inputS1}/prod${i}*.xtc -s ${inputS1}/start${i}.tpr -o ${outputS1}/prod${i}.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE -fr ${inputS1}/prod${i}.ndx &> ${outputS1}/trjconv${i}.log << EOF
 1
 EOF
 
 	echo "Trimming s2/prod${i}"
-    gmx_mpi trjconv -f ${inputS2}/prod${i}*.xtc -s ${inputS2}/start${i}.tpr -o ${outputS2}/prod${i}.xtc -pbc mol -ur compact -b 50001 -e 100000 -fr ${inputS2}/prod${i}.ndx &> ${outputS2}/trjconv${i}.log << EOF
+    gmx_mpi trjconv -f ${inputS2}/prod${i}*.xtc -s ${inputS2}/start${i}.tpr -o ${outputS2}/prod${i}.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE -fr ${inputS2}/prod${i}.ndx &> ${outputS2}/trjconv${i}.log << EOF
 1
 EOF
 done
@@ -38,5 +38,3 @@ gmx_mpi trjcat -f ${outputS2}/prod${first}.xtc ${outputS2}/prod$((first+1)).xtc 
 
 gmx_mpi angle -f ${outputS1}/all.xtc -n Omega.ndx -ov ${outputS1}/struct_omega.xvg -all -type dihedral &> ${outputS1}/angle.log
 gmx_mpi angle -f ${outputS2}/all.xtc -n Omega.ndx -ov ${outputS2}/struct_omega.xvg -all -type dihedral &> ${outputS2}/angle.log
-
-
