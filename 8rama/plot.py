@@ -11,9 +11,6 @@ import matplotlib.colors as colors
 import matplotlib.cm as cmx
 import matplotlib.colorbar as cb
 
-global nres_hl
-nres_hl = 4
-
 FesMax=0.005
 
 def genColorMap(cmap):
@@ -69,7 +66,7 @@ def add_NIP(Fig, x0, y0, SubPlotW, SubPlotH, NIP):
     tax.text(0, 0, "3D-NIP: total > %.4f | clean > %.4f" % (NIP_total, NIP_clean), fontsize = 20)
     tax.axis("off")
 
-def MakeFigure(FigW, FigH, inp, out, numRes, WriteDescription, seq, degreeFile, NIP, population, RMSD):
+def MakeFigure(FigW, FigH, inp, out, numRes, WriteDescription, seq, phiFile, psiFile, NIP, population, RMSD):
 
     TitleFP    = ftman.FontProperties(size=18)
     LegendFP = ftman.FontProperties(size=18)
@@ -120,7 +117,7 @@ def MakeFigure(FigW, FigH, inp, out, numRes, WriteDescription, seq, degreeFile, 
         else:
             ytlv = False
 
-        pc = MakeSubPlot(ax, xvals, yvals, dens2d, ires, degreeFile, xtlv, ytlv, 0, FesMax)
+        pc = MakeSubPlot(ax, xvals, yvals, dens2d, ires, phiFile, psiFile, xtlv, ytlv, 0, FesMax)
 
 
     cbl, cbb, cbw, cbh = left + NPX * (WSpace + SubPlotW), 0.5 * (top + bot) - 0.5 * SubPlotH, 0.02, SubPlotH
@@ -134,8 +131,7 @@ def MakeFigure(FigW, FigH, inp, out, numRes, WriteDescription, seq, degreeFile, 
     Fig.savefig(out)
 
 
-def MakeSubPlot(Axes, XVals, YVals, ColVals, ires, degreeFile, XTLVisible=False, YTLVisible=False, vmin=0, vmax=30):
-    global nres_hl
+def MakeSubPlot(Axes, XVals, YVals, ColVals, ires, phiFile, psiFile, XTLVisible=False, YTLVisible=False, vmin=0, vmax=30):
 
     TickFP    = ftman.FontProperties(size=12)
     MTickFP = ftman.FontProperties(size=0)
@@ -158,13 +154,17 @@ def MakeSubPlot(Axes, XVals, YVals, ColVals, ires, degreeFile, XTLVisible=False,
 
     pc = Axes.pcolormesh(XVals,YVals,ColVals,cmap=genColorMap(cmx.jet),vmin=vmin,vmax=vmax)
 
-    hl_vals = np.loadtxt(degreeFile,dtype=np.float32,usecols=list(range(1,9)),unpack=True)
+    phi_degrees = np.loadtxt(phiFile)
+    psi_degrees = np.loadtxt(psiFile)
+    assert len(phi_degrees) == len(psi_degrees)
+
+    nres_hl = len(phi_degrees) + 1
 
     if ires < nres_hl:
         if ires > 0:
-            plt.vlines(hl_vals[2*ires],-180,180,colors='r')
+            plt.vlines(phi_degrees[ires-1],-180,180,colors='r')
         if ires < nres_hl - 1:
-            plt.hlines(hl_vals[2*ires+1],-180,180,colors='r')
+            plt.hlines(psi_degrees[ires],-180,180,colors='r')
 
     return pc
 
@@ -214,17 +214,20 @@ if __name__ == '__main__':
     parser.add_option('--numRes', dest='numRes')
     parser.add_option('--input', dest='input')
     parser.add_option('--output', dest='output')
-    parser.add_option('--degreeFile', dest='degreeFile')
     parser.add_option('--NIP', dest='NIP')
     parser.add_option('--RMSD', dest='RMSD')
     parser.add_option('--population', dest='population')
+    parser.add_option('--phi', dest='phiFile', default='phi.txt')
+    parser.add_option('--psi', dest='psiFile', default='psi.txt')
+
     (options,args) = parser.parse_args()
     INP = options.input
     OUT = options.output
     numRes = int(options.numRes)
     WriteDescription = options.WriteDescription
     seq = options.seq
-    degreeFile = options.degreeFile
+    phiFile = options.phiFile
+    psiFile = options.psiFile
     NIP = options.NIP
     RMSD = options.RMSD
     population = options.population
@@ -234,4 +237,4 @@ if __name__ == '__main__':
         WriteDescription = True
     else:
         WriteDescription = False
-    MakeFigure((2 * (numRes + 2)), 4, INP, OUT, numRes, WriteDescription, seq, degreeFile, NIP, population, RMSD)
+    MakeFigure((2 * (numRes + 2)), 4, INP, OUT, numRes, WriteDescription, seq, phiFile, psiFile, NIP, population, RMSD)
