@@ -1,7 +1,7 @@
 #!/bin/bash
 source ~/compute.sh
 pathtogro=../2*/prot.gro
-file=a5_b2_6vyb.pdb
+file=ref.pdb
 
 for i in {1..2}
 do
