@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/compute.sh
+source ~/m4.sh
 pathtogro=../2*/prot.gro
 file=ref.pdb
 
