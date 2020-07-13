@@ -42,12 +42,12 @@ for ((i=1; i<=5; i++))
       echo 'Calculating cluster' ${i} 's'${j}
       if [ ${i} == 1  ]; then
           python plot.py --input s${j}_phipsi/cluster$i.txt --output s${j}_cluster${i}.png \
-              --numRes ${numRes} --seq ${seq} --degreeFile SESE.txt \
+              --numRes ${numRes} --seq ${seq} --phi phi.txt --psi psi.txt \
               --NIP ../5*/Result/s${j}/NIP.txt --RMSD ../7sample/s${j}cluster${i}/stat.txt \
               --population ../5*/Result/s${j}/cluster${i}.txt --WriteDescription True
       else
           python plot.py --input s${j}_phipsi/cluster$i.txt --output s${j}_cluster${i}.png \
-              --numRes ${numRes} --seq ${seq} --degreeFile SESE.txt \
+              --numRes ${numRes} --seq ${seq} --phi phi.txt --psi psi.txt \
               --NIP ../5*/Result/s${j}/NIP.txt --RMSD ../7sample/s${j}cluster${i}/stat.txt \
               --population ../5*/Result/s${j}/cluster${i}.txt --WriteDescription False
       fi
