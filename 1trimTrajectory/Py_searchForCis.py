@@ -1,10 +1,3 @@
-#Aidan Fike
-#June 28, 2019
-
-#Program to go through measured omega angle trajectories and find all cis peptide bonds
-
-import os
-
 cisFound = False
 currFile = open("struct_omega.xvg", "r")
 for line in currFile:
