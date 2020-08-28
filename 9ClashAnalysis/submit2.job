@@ -1,7 +1,5 @@
 #!/bin/bash
-#SBATCH -p m4
-#SBATCH --qos=yushan
-#SBATCH --account=yushan
+#SBATCH -p linlab
 #SBATCH -J JOBNAME
 #SBATCH -o runout.%j
 #SBATCH -e runerr.%j
