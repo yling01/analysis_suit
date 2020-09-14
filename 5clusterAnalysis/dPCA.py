@@ -81,7 +81,6 @@ if time_procedure:
     start = time.perf_counter()
 
 projection = np.loadtxt(projectionFile)
-trajectory_len = len(projection) // 2
 
 h1, h2 = create_histogram(projection[:trajectory_len], projection[trajectory_len:])
 s1_density, s1_density_clean = combine_density_coor(h1, 0.1000)
