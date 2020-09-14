@@ -124,10 +124,18 @@ for i in range(5):
         fi.write(str(s1_population[i]))
         fi.write("\n")
 
+for pop in s1_population:
+    with open("%s/population_total.txt" % (s1_dir), "w+") as fi:
+        fi.write("%.5f\n" % pop)
+
 for i in range(5):
     with open("%s/cluster%d.txt" % (s2_dir, (i + 1)), "w+") as fi:
         fi.write(str(s2_population[i]))
         fi.write("\n")
+
+for pop in s2_population:
+    with open("%s/population_total.txt" % (s2_dir), "w+") as fi:
+        fi.write("%.5f\n" % pop)
 
 if time_procedure:
     end = time.perf_counter()
