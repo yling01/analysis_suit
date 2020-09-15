@@ -158,11 +158,11 @@ def MakeSubPlot(Axes, XVals, YVals, ColVals, ires, phiFile, psiFile, XTLVisible=
     psi_degrees = np.loadtxt(psiFile)
     assert len(phi_degrees) == len(psi_degrees)
 
-    nres_hl = len(phi_degrees) + 1
+    nres_hl = len(phi_degrees)
 
     if ires < nres_hl:
         if ires > 0:
-            plt.vlines(phi_degrees[ires-1],-180,180,colors='r')
+            plt.vlines(phi_degrees[ires],-180,180,colors='r')
         if ires < nres_hl - 1:
             plt.hlines(psi_degrees[ires],-180,180,colors='r')
 
