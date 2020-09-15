@@ -4,7 +4,6 @@
 #SBATCH -o runout.%j
 #SBATCH -e runerr.%j
 #SBATCH --export=ALL
-#SBATCH --mem=0
 #SBATCH --time=07-00:00
 source ~/compute.sh
 cp ../4*/pc1_pc2_pc3/all.txt .

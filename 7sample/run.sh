@@ -1,7 +1,7 @@
 #!/bin/bash
 source ~/m4.sh
 pathtogro=../2*/prot.gro
-file=ref.pdb
+file=ref_SESE.pdb
 
 for i in {1..2}
 do
