@@ -13,7 +13,7 @@ for i in `seq $((seqLength*2)) $((seqLength*2+4))`;
 do
 	echo "Trimming s1/prod${i}"
 	echo 1 | gmx_mpi trjconv -f ${inputS1}/prod${i}*.xtc -s ${inputS1}/start${i}.tpr -o ${outputS1}/prod${i}_temp.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE -fr ${inputS1}/prod${i}.ndx &> ${outputS1}/trjconv${i}_temp.log
-    echo 1 | gmx_mpi trjconv -f ${outputS1}/prod${i}_temp.xtc -s ${inputS1}/start${i}.tpr -o ${outputS1}/prod${i}.xtc &> ${outputS1}/trjconv${i}.log
+    	echo 1 | gmx_mpi trjconv -f ${outputS1}/prod${i}_temp.xtc -s ${inputS1}/start${i}.tpr -o ${outputS1}/prod${i}.xtc &> ${outputS1}/trjconv${i}.log
 
 	echo "Trimming s2/prod${i}"
 	echo 1 | gmx_mpi trjconv -f ${inputS2}/prod${i}*.xtc -s ${inputS2}/start${i}.tpr -o ${outputS2}/prod${i}_temp.xtc -pbc mol -ur compact -b STARTTOCHANGE -e ENDTOCHANGE -fr ${inputS2}/prod${i}.ndx &> ${outputS2}/trjconv${i}_temp.log
