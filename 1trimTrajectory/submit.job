@@ -5,5 +5,4 @@
 #SBATCH -e runerr.%j
 #SBATCH --export=ALL
 #SBATCH --time=07-00:00
-source ~/compute.sh
 ./trim.sh

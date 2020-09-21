@@ -1,3 +1,4 @@
+source ~/m4.sh
 echo "Sequence Length: "
 read seqLength
 
