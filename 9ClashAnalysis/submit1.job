@@ -1,11 +1,12 @@
 #!/bin/bash
-#SBATCH -p linlab
+#SBATCH -p m4
 #SBATCH -J JOBNAME
 #SBATCH -o runout.%j
 #SBATCH -e runerr.%j
 #SBATCH --export=ALL
 #SBATCH --time=07-00:00
-source ~/compute.sh
+#SBATCH --exclude=m4c[01-10,11-14,16-24,25-32,34,36-37,39,40-47]
+source ~/m4.sh
 echo 1 | gmx_mpi trjconv -s start0.tpr -f all_pbc.xtc -pbc mol -ur compact -o frame.pdb -fr frame.ndx
 python Py_write_dummy_pdb.py
 echo 1 q | gmx_mpi make_ndx -f dummy.pdb -o index_cyclic.ndx #provide index_hotloop.ndx

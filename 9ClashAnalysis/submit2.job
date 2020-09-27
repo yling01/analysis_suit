@@ -1,10 +1,11 @@
 #!/bin/bash
-#SBATCH -p linlab
+#SBATCH -p m4
 #SBATCH -J JOBNAME
 #SBATCH -o runout.%j
 #SBATCH -e runerr.%j
 #SBATCH --export=ALL
 #SBATCH --time=07-00:00
+#SBATCH --exclude=m4c[01-10,11-14,16-24,25-32,34,36-37,39,40-47]
 source ~/compute.sh
 for i in {1..2}
 do
