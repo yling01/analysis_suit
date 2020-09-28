@@ -63,11 +63,11 @@ def setTickes(axis, xmax, ymax):
     # Make a plot with major ticks that are multiples of 20 and minor ticks that
     # are multiples of 5.  Label major ticks with '%d' formatting but don't label
     # minor ticks.
-    axis.xaxis.set_major_locator(MultipleLocator(0.2))
+    axis.xaxis.set_major_locator(MultipleLocator(0.4))
     axis.xaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 
     # For the minor ticks, use no labels; default NullFormatter.
-    axis.xaxis.set_minor_locator(MultipleLocator(0.1))
+    axis.xaxis.set_minor_locator(MultipleLocator(0.2))
     axis.margins(x=0)
     axis.margins(y=0)
     axis.set_ylim(top=ymax)
@@ -208,5 +208,3 @@ if __name__ == "__main__":
         properWrapper(axs_all[index][0], "All Frames", RMSDCutoff, ymax, index, 0, len(seq), "%s\nPr(RMSD < %.1fÅ) = %.2f%%\nHighest Probability Found At %.3fÅ" % (seq[index], probabilityCutoff, probability[index][0], peak_x[index][0]))
 
     fig.savefig(filename="histogram.png", dpi=300)
-
-
