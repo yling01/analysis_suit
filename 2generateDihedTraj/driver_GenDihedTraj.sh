@@ -51,5 +51,5 @@ for i in `seq 1 2`; do
 done
 
 echo "concatenating all dihedral trajectories"
-gmx_mpi trjcat -f s1${prot}_all.trr s2${prot}_all.trr -cat -o all.trr &> trjcat_all.log
+gmx_mpi trjcat -f s1${prot}_all.trr s2${prot}_all.trr -cat -o all.trr -nosort &> trjcat_all.log
 cp all.trr ../3*/
