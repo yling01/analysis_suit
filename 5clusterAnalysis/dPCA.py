@@ -10,7 +10,7 @@ import optparse
 import os
 import sys
 import time
-
+import math
 sys.path.insert(1, 'source/')
 
 from MakeFigure import *
@@ -91,6 +91,9 @@ projection_cluster_assignment1, raw_cluster_assignment1 = get_cluster_assignment
 projection_cluster_assignment2, raw_cluster_assignment2 = get_cluster_assignment(s2_density_clean, projection[trajectory_len:], "s2_decision_graph.png", interactive, s2_dir)
 
 print("Plotting density graph...")
+raw_cluster_assignment1 = np.hstack((s1_density_clean[:,:3], raw_cluster_assignment1, s1_density_clean[:,3]))
+raw_cluster_assignment2 = np.hstack((s2_density_clean[:,:3], raw_cluster_assignment2, s2_density_clean[:,3]))
+
 
 np.savetxt(s1_dir + "/density.txt", s1_density_clean, fmt = "%10.5f")
 np.savetxt(s1_dir + "/density_cluster.txt", raw_cluster_assignment1, fmt = "%10.5f")
@@ -99,21 +102,21 @@ np.savetxt(s2_dir + "/density_cluster.txt", raw_cluster_assignment2, fmt = "%10.
 
 os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_density.gplt" % (s1_dir,
                                                                                                                                                              s1_dir,
-                                                                                                                                                             np.amin(s1_density_clean[:,0]),
-                                                                                                                                                             np.amax(s1_density_clean[:,0]),
-                                                                                                                                                             np.amin(s1_density_clean[:,1]),
-                                                                                                                                                             np.amax(s1_density_clean[:,1]),
-                                                                                                                                                             np.amin(s1_density_clean[:,2]),
-                                                                                                                                                             np.amax(s1_density_clean[:,2])))
+                                                                                                                                                             math.floor(np.amin(s1_density_clean[:,0])),
+                                                                                                                                                             math.ceil(np.amax(s1_density_clean[:,0])),
+                                                                                                                                                             math.floor(np.amin(s1_density_clean[:,1])),
+                                                                                                                                                             math.ceil(np.amax(s1_density_clean[:,1])),
+                                                                                                                                                             math.floor(np.amin(s1_density_clean[:,2])),
+                                                                                                                                                             math.ceil(np.amax(s1_density_clean[:,2]))))
 os.system("convert -density 300 tmp.eps %s/density.png" % s1_dir)
 os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_density.gplt" % (s2_dir,
                                                                                                                                                              s2_dir,
-                                                                                                                                                             np.amin(s2_density_clean[:,0]),
-                                                                                                                                                             np.amax(s2_density_clean[:,0]),
-                                                                                                                                                             np.amin(s2_density_clean[:,1]),
-                                                                                                                                                             np.amax(s2_density_clean[:,1]),
-                                                                                                                                                             np.amin(s2_density_clean[:,2]),
-                                                                                                                                                             np.amax(s2_density_clean[:,2])))
+                                                                                                                                                             math.floor(np.amin(s2_density_clean[:,0])),
+                                                                                                                                                             math.ceil(np.amax(s2_density_clean[:,0])),
+                                                                                                                                                             math.floor(np.amin(s2_density_clean[:,1])),
+                                                                                                                                                             math.ceil(np.amax(s2_density_clean[:,1])),
+                                                                                                                                                             math.floor(np.amin(s2_density_clean[:,2])),
+                                                                                                                                                             math.ceil(np.amax(s2_density_clean[:,2]))))
 os.system("convert -density 300 tmp.eps %s/density.png" % s2_dir)
 
 print("Writing cluster assignment...")
