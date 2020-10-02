@@ -511,7 +511,7 @@ def get_cluster_assignment(density_clean, projection, file_name, interactive, di
     rho, delta, cluster, cluster_center_index, distance_mtx_condensed, distance_cutoff = DB_cluster(density_clean, interactive=interactive)
     halo = calculate_halo(cluster, distance_mtx_condensed, distance_cutoff, rho)
     draw_clustered_decision_graph(rho, delta, cluster_center_index, file_name, dir_name)
-    return assign_projection_cluster(projection, cluster, density_clean)
+    return assign_projection_cluster(projection, cluster, density_clean), cluster
 
 def write_cluster_ndx(fileName, cluster_assignment):
     cluster, count = np.unique(cluster_assignment, return_counts=True)

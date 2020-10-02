@@ -14,9 +14,9 @@ set xlabel "PC1"
 set ylabel "PC2"
 set zlabel "PC3"
 set title  TITLE
-set xrange [-3:3]
-set yrange [-3:3]
-set zrange [-4:2]
+set xrange [XMIN:XMAX]
+set yrange [YMIN:YMAX]
+set zrange [ZMIN:ZMAX]
 
 #set key at screen 0.8, 0.8
 #set view 10,10
