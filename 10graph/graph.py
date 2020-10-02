@@ -73,7 +73,7 @@ def setTickes(axis, xmax, ymax):
     axis.set_ylim(top=ymax)
     axis.set_xlim(right=xmax)
 
-    axis.yaxis.set_major_locator(MultipleLocator(0.2))
+    axis.yaxis.set_major_locator(MultipleLocator(0.4))
     axis.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 
     # For the minor ticks, use no labels; default NullFormatter.
@@ -83,26 +83,26 @@ def setTickes(axis, xmax, ymax):
     ticky = axis.yaxis.get_major_ticks()
 
     for tick in tickx:
-        tick.label.set_fontsize(20)
+        tick.label.set_fontsize(15)
     for tick in ticky:
-        tick.label.set_fontsize(20)
+        tick.label.set_fontsize(15)
 
 def properWrapper(axis, title, xmax, ymax, index_curr_row, index_curr_col, total, sequence):
-    # axis.legend(loc=1, prop={'family': 'monospace', 'size': 20})
-    if index_curr_row == 0:
-        title = title + "\n" + sequence
-    else:
-        title = sequence
+    # axis.legend(loc=1, prop={'family': 'monospace', 'size': 70})
+    # if index_curr_row == 0:
+    #     title = title + "\n\n" + sequence
+    # else:
+    title = sequence
 
-    axis.set_title(title, fontsize=30)
+    axis.set_title(title, fontsize=15)
 
     setTickes(axis, xmax, ymax)
 
     if index_curr_row == total - 1:
-        axis.set_xlabel("RMSD (Å)", fontsize=25)
+        axis.set_xlabel("RMSD (Å)", fontsize=15)
 
     if index_curr_col == 0:
-        axis.set_ylabel("Probability Density", fontsize=25)
+        axis.set_ylabel("Probability Density", fontsize=15)
 
 
 if __name__ == "__main__":
@@ -129,9 +129,10 @@ if __name__ == "__main__":
     RMSDCutoff = float(options.RMSDCutoff)
     probabilityCutoff = float(options.probabilityCutoff)
 
-    color = ['#0a6902', '#9c5808', '#233c9e', '#335cff', '#0a6902', '#0fa103', '#ae016c', '#fc019c','#be0a35', '#f76d8e']
+    color = ['#e8173a', '#22dd34', '#260bf4', '#335cff', '#0a6902', '#0fa103', '#ae016c', '#fc019c','#be0a35', '#f76d8e']
     assert len(seq) <= len(color)
-    fig, axs_all = plt.subplots(nrows=len(seq), ncols=2, sharex=True, sharey=True, figsize=(28, 14 * len(seq)))
+    fig, axs_all = plt.subplots(nrows=len(seq), ncols=2, sharex=False, sharey=False, figsize=(10, 8 * len(seq)))
+    fig.subplots_adjust(hspace=0.5, wspace=0.8)
 
     vf = np.vectorize((lambda x : 10 * x))
     ymax = 0.0
@@ -179,12 +180,12 @@ if __name__ == "__main__":
         HotLoopAll_max_x1 = HotLoopX[np.argmax(HotLoopAllY1)]
         HotLoopAll_max_x2 = HotLoopX[np.argmax(HotLoopAllY2)]
 
-        axs_all[index][0].axvline(HotLoopAll_max_x1, ls="--")
-        axs_all[index][0].axvline(HotLoopAll_max_x2, ls="--")
+        # axs_all[index][0].axvline(HotLoopAll_max_x1, ls="--")
+        # axs_all[index][0].axvline(HotLoopAll_max_x2, ls="--")
         HotLoopNoClash_max_x1 = HotLoopX[np.argmax(HotLoopNoClashY1)]
         HotLoopNoClash_max_x2 = HotLoopX[np.argmax(HotLoopNoClashY2)]
-        axs_all[index][1].axvline(HotLoopNoClash_max_x1, ls="--")
-        axs_all[index][1].axvline(HotLoopNoClash_max_x2, ls="--")
+        # axs_all[index][1].axvline(HotLoopNoClash_max_x1, ls="--")
+        # axs_all[index][1].axvline(HotLoopNoClash_max_x2, ls="--")
         all_peak_x = 0.5 * (HotLoopAll_max_x1 + HotLoopAll_max_x2)
         noC_peak_x = 0.5 * (HotLoopNoClash_max_x1 + HotLoopNoClash_max_x2)
         peak_x.append((all_peak_x, noC_peak_x))
@@ -202,9 +203,11 @@ if __name__ == "__main__":
         drawShadow(axs_all[index][0], HotLoopX, HotLoopAllY1, HotLoopAllY2, color[index])
 
     ymax += 1.0
-
+    
     for index in range(len(seq)):
-        properWrapper(axs_all[index][1], "No Clash Only", RMSDCutoff, ymax, index, 1, len(seq), "%s\nPr(RMSD < %.1fÅ | No Clash) = %.2f%%\nHighest Probability Found At %.3fÅ" % (seq[index], probabilityCutoff, probability[index][1], peak_x[index][1]))
-        properWrapper(axs_all[index][0], "All Frames", RMSDCutoff, ymax, index, 0, len(seq), "%s\nPr(RMSD < %.1fÅ) = %.2f%%\nHighest Probability Found At %.3fÅ" % (seq[index], probabilityCutoff, probability[index][0], peak_x[index][0]))
+        #properWrapper(axs_all[index][1], "No Clash Only", RMSDCutoff, 6.0, index, 1, len(seq), "%s\nPr(RMSD < %.1fÅ | No Clash) = %.2f%%\nHighest Probability Found At %.3fÅ\n" % (seq[index], probabilityCutoff, probability[index][1], peak_x[index][1]))
+        #properWrapper(axs_all[index][0], "All Frames", RMSDCutoff, 6.0, index, 0, len(seq), "%s\nPr(RMSD < %.1fÅ) = %.2f%%\nHighest Probability Found At %.3fÅ\n" % (seq[index], probabilityCutoff, probability[index][0], peak_x[index][0]))
+        properWrapper(axs_all[index][1], "No Clash Only", RMSDCutoff, 6.0, index, 1, len(seq), "Pr(RMSD < %.1fÅ | No Clash) = %.2f%%\nHighest Probability Found At %.3fÅ\n" % (probabilityCutoff, probability[index][1], peak_x[index][1]))
+        properWrapper(axs_all[index][0], "All Frames", RMSDCutoff, 6.0, index, 0, len(seq), "Pr(RMSD < %.1fÅ) = %.2f%%\nHighest Probability Found At %.3fÅ\n" % (probabilityCutoff, probability[index][0], peak_x[index][0]))
 
     fig.savefig(filename="histogram.png", dpi=300)
