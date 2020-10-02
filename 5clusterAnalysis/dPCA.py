@@ -86,10 +86,10 @@ h1, h2 = create_histogram(projection[:trajectory_len], projection[trajectory_len
 s1_density, s1_density_clean = combine_density_coor(h1, 0.1000)
 s2_density, s2_density_clean = combine_density_coor(h2, 0.1000)
 
-np.savetxt(s1_dir + "density.txt", density_coor_array, fmt = "%10.5f")
+np.savetxt(s1_dir + "density.txt", s1_density, fmt = "%10.5f")
 os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'\" plot.gplt" % (s1_dir, file_prefix))
 os.system("convert -density 300 %s/tmp.eps %s/density.png" % (s1_dir, s1_dir))
-np.savetxt(s2_dir + "density.txt", density_coor_array, fmt = "%10.5f")
+np.savetxt(s2_dir + "density.txt", s2_density, fmt = "%10.5f")
 os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'\" plot.gplt" % (s2_dir, file_prefix))
 os.system("convert -density 300 %s/tmp.eps %s/density.png" % (s2_dir, s2_dir))
 
