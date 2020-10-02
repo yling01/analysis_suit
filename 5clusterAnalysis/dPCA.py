@@ -93,7 +93,11 @@ projection_cluster_assignment2, raw_cluster_assignment2 = get_cluster_assignment
 print("Plotting density graph...")
 
 np.savetxt(s1_dir + "/density.txt", s1_density_clean, fmt = "%10.5f")
-os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot.gplt" % (s1_dir,
+np.savetxt(s1_dir + "/density_cluster.txt", raw_cluster_assignment1, fmt = "%10.5f")
+np.savetxt(s2_dir + "/density.txt", s2_density_clean, fmt = "%10.5f")
+np.savetxt(s2_dir + "/density_cluster.txt", raw_cluster_assignment2, fmt = "%10.5f")
+
+os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_density.gplt" % (s1_dir,
                                                                                                                                                              s1_dir,
                                                                                                                                                              np.amin(s1_density_clean[:,0]),
                                                                                                                                                              np.amax(s1_density_clean[:,0]),
@@ -102,8 +106,7 @@ os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMA
                                                                                                                                                              np.amin(s1_density_clean[:,2]),
                                                                                                                                                              np.amax(s1_density_clean[:,2])))
 os.system("convert -density 300 tmp.eps %s/density.png" % s1_dir)
-np.savetxt(s2_dir + "/density.txt", s2_density_clean, fmt = "%10.5f")
-os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot.gplt" % (s2_dir,
+os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_density.gplt" % (s2_dir,
                                                                                                                                                              s2_dir,
                                                                                                                                                              np.amin(s2_density_clean[:,0]),
                                                                                                                                                              np.amax(s2_density_clean[:,0]),
