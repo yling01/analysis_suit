@@ -91,8 +91,8 @@ projection_cluster_assignment1, raw_cluster_assignment1 = get_cluster_assignment
 projection_cluster_assignment2, raw_cluster_assignment2 = get_cluster_assignment(s2_density_clean, projection[trajectory_len:], "s2_decision_graph.png", interactive, s2_dir)
 
 print("Plotting density graph...")
-raw_cluster_assignment1 = np.hstack((s1_density_clean[:,:3], raw_cluster_assignment1, s1_density_clean[:,3]))
-raw_cluster_assignment2 = np.hstack((s2_density_clean[:,:3], raw_cluster_assignment2, s2_density_clean[:,3]))
+raw_cluster_assignment1 = np.hstack((s1_density_clean[:,:3].reshape((len(s1_density_clean), -1)), raw_cluster_assignment1, s1_density_clean[:,3].reshape((len(s1_density_clean), -1))))
+raw_cluster_assignment2 = np.hstack((s2_density_clean[:,:3].reshape((len(s2_density_clean), -1)), raw_cluster_assignment2, s2_density_clean[:,3].reshape((len(s2_density_clean), -1))))
 
 
 np.savetxt(s1_dir + "/density.txt", s1_density_clean, fmt = "%10.5f")
