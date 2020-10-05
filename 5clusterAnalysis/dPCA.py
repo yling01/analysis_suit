@@ -100,7 +100,7 @@ np.savetxt(s1_dir + "/density_cluster.txt", raw_cluster_assignment1, fmt = "%10.
 np.savetxt(s2_dir + "/density.txt", s2_density_clean, fmt = "%10.5f")
 np.savetxt(s2_dir + "/density_cluster.txt", raw_cluster_assignment2, fmt = "%10.5f")
 
-os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_density.gplt" % (s1_dir,
+os.system("gnuplot -e \"TITLE=\'%s\_%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_density.gplt" % (dir_name, "s1",
                                                                                                                                                              s1_dir,
                                                                                                                                                              math.floor(np.amin(s1_density_clean[:,0])),
                                                                                                                                                              math.ceil(np.amax(s1_density_clean[:,0])),
@@ -111,18 +111,18 @@ os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMA
 os.system("convert -density 300 tmp.eps %s/density.png" % s1_dir)
 
 
-# os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_cluster.gplt" % (s1_dir,
-#                                                                                                                                                              s1_dir,
-#                                                                                                                                                              math.floor(np.amin(s1_density_clean[:,0])),
-#                                                                                                                                                              math.ceil(np.amax(s1_density_clean[:,0])),
-#                                                                                                                                                              math.floor(np.amin(s1_density_clean[:,1])),
-#                                                                                                                                                              math.ceil(np.amax(s1_density_clean[:,1])),
-#                                                                                                                                                              math.floor(np.amin(s1_density_clean[:,2])),
-#                                                                                                                                                              math.ceil(np.amax(s1_density_clean[:,2]))))
-# os.system("convert -density 300 tmp.eps %s/density_cluster.png" % s1_dir)
+os.system("gnuplot -e \"TITLE=\'%s\_%s\'; INPUT=\'%s/density_cluster.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_cluster.gplt" % (dir_name, "s1",
+                                                                                                                                                             s1_dir,
+                                                                                                                                                             math.floor(np.amin(s1_density_clean[:,0])),
+                                                                                                                                                             math.ceil(np.amax(s1_density_clean[:,0])),
+                                                                                                                                                             math.floor(np.amin(s1_density_clean[:,1])),
+                                                                                                                                                             math.ceil(np.amax(s1_density_clean[:,1])),
+                                                                                                                                                             math.floor(np.amin(s1_density_clean[:,2])),
+                                                                                                                                                             math.ceil(np.amax(s1_density_clean[:,2]))))
+os.system("convert -density 300 tmp.eps %s/density_cluster.png" % s1_dir)
 
 
-os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_density.gplt" % (s2_dir,
+os.system("gnuplot -e \"TITLE=\'%s\_%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_density.gplt" % (dir_name, "s2",
                                                                                                                                                              s2_dir,
                                                                                                                                                              math.floor(np.amin(s2_density_clean[:,0])),
                                                                                                                                                              math.ceil(np.amax(s2_density_clean[:,0])),
@@ -132,15 +132,15 @@ os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMA
                                                                                                                                                              math.ceil(np.amax(s2_density_clean[:,2]))))
 os.system("convert -density 300 tmp.eps %s/density.png" % s2_dir)
 
-# os.system("gnuplot -e \"TITLE=\'%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_cluster.gplt" % (s2_dir,
-#                                                                                                                                                              s2_dir,
-#                                                                                                                                                              math.floor(np.amin(s2_density_clean[:,0])),
-#                                                                                                                                                              math.ceil(np.amax(s2_density_clean[:,0])),
-#                                                                                                                                                              math.floor(np.amin(s2_density_clean[:,1])),
-#                                                                                                                                                              math.ceil(np.amax(s2_density_clean[:,1])),
-#                                                                                                                                                              math.floor(np.amin(s2_density_clean[:,2])),
-#                                                                                                                                                              math.ceil(np.amax(s2_density_clean[:,2]))))
-# os.system("convert -density 300 tmp.eps %s/density_cluster.png" % s2_dir)
+os.system("gnuplot -e \"TITLE=\'%s\_%s\'; INPUT=\'%s/density_cluster.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_cluster.gplt" % (dir_name, "s2", 
+                                                                                                                                                             s2_dir,
+                                                                                                                                                             math.floor(np.amin(s2_density_clean[:,0])),
+                                                                                                                                                             math.ceil(np.amax(s2_density_clean[:,0])),
+                                                                                                                                                             math.floor(np.amin(s2_density_clean[:,1])),
+                                                                                                                                                             math.ceil(np.amax(s2_density_clean[:,1])),
+                                                                                                                                                             math.floor(np.amin(s2_density_clean[:,2])),
+                                                                                                                                                             math.ceil(np.amax(s2_density_clean[:,2]))))
+os.system("convert -density 300 tmp.eps %s/density_cluster.png" % s2_dir)
 
 print("Writing cluster assignment...")
 np.savetxt(s1_dir + "/s1_assignment.txt", projection_cluster_assignment1, fmt = "%d")
