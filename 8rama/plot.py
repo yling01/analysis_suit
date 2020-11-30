@@ -128,7 +128,7 @@ def MakeFigure(FigW, FigH, inp, out, numRes, WriteDescription, seq, phiFile, psi
     cb.set_ticks(ticks=cbticks)
     cb.set_ticklabels(ticklabels=[str(i) for i in cbticks])
 
-    Fig.savefig(out)
+    Fig.savefig(out, bbox_inches='tight')
 
 
 def MakeSubPlot(Axes, XVals, YVals, ColVals, ires, phiFile, psiFile, XTLVisible=False, YTLVisible=False, vmin=0, vmax=30):
