@@ -55,15 +55,13 @@ for ((i=1; i<=5; i++))
 done
 
 printf "\\\documentclass{article}
+\usepackage{nopageno}
 \usepackage{subfigure}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}" >> ${seq}.tex
 printf "\\\begin{document}" >> ${seq}.tex
-
-
-
-
 printf "
+\pagestyle{plain}
 \\\begin{figure}[ht!]
    \\\begin{center}
       \subfigure{\includegraphics[width=\\\textwidth]{s1_cluster1.png}}
