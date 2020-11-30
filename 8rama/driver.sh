@@ -53,3 +53,37 @@ for ((i=1; i<=5; i++))
       fi
    done
 done
+
+printf "\\\documentclass{article}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}" >> ${seq}.tex
+printf "\\\begin{document}" >> ${seq}.tex
+
+
+
+
+printf "
+\\\begin{figure}[ht!]
+   \\\begin{center}
+      \subfigure{\includegraphics[width=\\\textwidth]{s1_cluster1.png}}
+      \subfigure{\includegraphics[width=\\\textwidth]{s1_cluster2.png}}
+      \subfigure{\includegraphics[width=\\\textwidth]{s1_cluster3.png}}
+      \subfigure{\includegraphics[width=\\\textwidth]{s1_cluster4.png}}
+      \subfigure{\includegraphics[width=\\\textwidth]{s1_cluster5.png}}
+          \subfigure{\includegraphics[width=\\\textwidth]{s2_cluster1.png}}
+          \subfigure{\includegraphics[width=\\\textwidth]{s2_cluster2.png}}
+          \subfigure{\includegraphics[width=\\\textwidth]{s2_cluster3.png}}
+          \subfigure{\includegraphics[width=\\\textwidth]{s2_cluster4.png}}
+          \subfigure{\includegraphics[width=\\\textwidth]{s2_cluster5.png}}
+    \\\end{center}
+\\\end{figure}
+" >> ${seq}.tex
+
+
+
+printf "\\\end{document}" >> ${seq}.tex
+pdflatex ${seq}.tex
+rm ${seq}.tex ${seq}.aux ${seq}.log
+
+
