@@ -17,6 +17,7 @@ from MakeFigure import *
 from CalcNIP import *
 from Cluster import *
 from MakeDensityMtx import *
+from Miscellaneous import *
 import shutil
 def getInput(input):
     if input[0].upper() == "T":
@@ -94,11 +95,15 @@ print("Plotting density graph...")
 raw_cluster_assignment1 = np.hstack((s1_density_clean[:,:3], raw_cluster_assignment1.reshape((-1,1)), s1_density_clean[:,3].reshape((-1,1))))
 raw_cluster_assignment2 = np.hstack((s2_density_clean[:,:3], raw_cluster_assignment2.reshape((-1,1)), s2_density_clean[:,3].reshape((-1,1))))
 
+raw_cluster_assignment1 = sort_density_graph(raw_cluster_assignment1)
+raw_cluster_assignment2 = sort_density_graph(raw_cluster_assignment2)
 
-np.savetxt(s1_dir + "/density.txt", s1_density_clean, fmt = "%10.5f")
-np.savetxt(s1_dir + "/density_cluster.txt", raw_cluster_assignment1, fmt = "%10.5f")
-np.savetxt(s2_dir + "/density.txt", s2_density_clean, fmt = "%10.5f")
-np.savetxt(s2_dir + "/density_cluster.txt", raw_cluster_assignment2, fmt = "%10.5f")
+
+
+np.savetxt(s1_dir + "/density.txt", s1_density_clean, fmt = "%10.3f")
+np.savetxt(s1_dir + "/density_cluster.txt", raw_cluster_assignment1, fmt = "%10.3f")
+np.savetxt(s2_dir + "/density.txt", s2_density_clean, fmt = "%10.3f")
+np.savetxt(s2_dir + "/density_cluster.txt", raw_cluster_assignment2, fmt = "%10.3f")
 
 os.system("gnuplot -e \"TITLE=\'%s\_%s\'; INPUT=\'%s/density.txt\'; XMIN=\'%f\'; XMAX=\'%f\'; YMIN=\'%f\'; YMAX=\'%f\'; ZMIN=\'%f\'; ZMAX=\'%f\'\" plot_density.gplt" % (dir_name, "s1",
                                                                                                                                                              s1_dir,

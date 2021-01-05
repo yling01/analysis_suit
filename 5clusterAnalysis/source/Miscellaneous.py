@@ -91,3 +91,20 @@ def get_trajectory_files(trajectory_dir):
 
     return topology, xtc
 
+def sort_density_graph(cluster_assignment):
+    cell_loc = cluster_assignment[:,:3]
+    cluster = cluster_assignment[:,3]
+    density = cluster_assignment[:,4]
+    num_state = int(np.amax(cluster))
+    population = np.zeros(num_state)
+    sorted_cluster_assignment = np.array([], dtype=int)
+    for i in range(len(cluster)):
+        index = int(cluster[i] - 1)
+        population[index] = density[i] + population[index]
+    ordered_population = sorted(range(len(population)), key=lambda x: population[x])
+    new_states = [ordered_population.index(i)+1 for i in range(num_state)]
+    for i in range(len(cluster)):
+        index = int(cluster[i]) - 1
+        new_state = new_states[index]
+        sorted_cluster_assignment = np.concatenate((sorted_cluster_assignment, cell_loc[i], [new_state]))
+    return sorted_cluster_assignment.reshape((-1, 4))
