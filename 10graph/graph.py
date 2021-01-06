@@ -106,7 +106,10 @@ def calculateError(s1_metric, s2_metric):
 
 def makeBlankFigure(NPX, NPY):
 
-    fig = plt.figure(figsize = (8.25, 6 * NPY), dpi = 300)
+    plotW = 8.25
+    plotH = 6 * NPY
+
+    fig = plt.figure(figsize = (8.25, plotH), dpi = 300)
 
     left, bot, right, top = (0.1, 0.1, 0.90, 0.90)
     HSpace = 0.4 * (top - bot) / NPY
@@ -127,7 +130,7 @@ def makeBlankFigure(NPX, NPY):
             plot_b = bot + y * (SubPlotH + HSpace)
 
             plot_ax = fig.add_axes([plot_l, plot_b, SubPlotW, SubPlotH])
-            text_ax_seq = fig.add_axes([plot_l, plot_b + SubPlotH * 1.2, SubPlotW, 0.1])
+            text_ax_seq = fig.add_axes([plot_l, plot_b + SubPlotH + (0.3 / plotH), SubPlotW, 0.1])
             text_ax_description = fig.add_axes([plot_l, plot_b + SubPlotH, SubPlotW, 0.1])
 
             if x == 0:
@@ -272,4 +275,4 @@ if __name__ == "__main__":
             setTickes(plot_axes[index][i], 2.0, ymax)
 
 
-    fig.savefig(fname="histogram.png", dpi=300, bbox_inches='tight')
+    fig.savefig(filename="histogram.png", dpi=300, bbox_inches='tight')
