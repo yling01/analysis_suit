@@ -5,7 +5,7 @@
 #SBATCH -e runerr.%j
 #SBATCH --export=ALL
 #SBATCH --time=07-00:00
-#SBATCH --exclude=m4c[01-10,11-14,16-24,25-32,34,36-37,39,40-47]
+#SBATCH -x m4c[11-14,16-30]
 source ~/m4.sh
 echo 1 | gmx_mpi trjconv -s start0.tpr -f all_pbc.xtc -pbc mol -ur compact -o frame.pdb -fr frame.ndx
 python Py_write_dummy_pdb.py
