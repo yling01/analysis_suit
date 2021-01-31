@@ -23,7 +23,7 @@ do
 	do
         	python calculateRMSD.py --ref ${file} --output s${i}cluster${j}/stat.txt --trajectory s${i}cluster${j}/100random.pdb
 		cd s${i}cluster${j}
-		vmd -m 100random.pdb ../Cks1.pdb < ../script.vmd
+		vmd -m 100random.pdb ../ref_SESE.pdb < ../script.vmd
 		cd ../
 	done
 done
